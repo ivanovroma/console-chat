@@ -1,5 +1,5 @@
 # ᛞ CONSOLE-CHAT ᛞ
-Разрабатывалось на node v12.16.1
+Консольный чат с возможностью анонимного общения. Разрабатывался на node v12.16.1
 
 ## Как запустить
 1. git clone https://github.com/ivanovroma/console-chat.git

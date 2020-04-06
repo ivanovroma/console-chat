@@ -6,12 +6,12 @@ const store = {
     addUser(user) {
         data.userList.push(user)
     },
-    getUserListNicknames() {
+    getUserListForClient() {
         const result = []
 
         data.userList.forEach((user) => {
-            const { nickname } = user
-            result.push(nickname)
+            const { nickname, publicKey } = user
+            result.push({ nickname, publicKey })
         })
 
         return result

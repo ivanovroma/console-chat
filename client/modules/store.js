@@ -14,22 +14,59 @@ const store = {
         data.userList = []
 
         userList.forEach((user) => {
-            if (user != data.currentUser) {
+            if (user.nickname != data.currentUser.nickname) {
                 data.userList.push(user)
             }
         })
 
         return data.userList
     },
-    addUserInUserList(nickname) {
-        data.userList.push(nickname)
+    addUserInUserList(user) {
+        data.userList.push(user)
     },
     checkUser(nickname) {
-        return data.userList.indexOf(nickname) !== -1
+        let result = false
+
+        data.userList.forEach((user) => {
+            if (user.nickname === nickname) {
+                result = true
+            }
+        })
+
+        return result
     },
     removeUserFromUserList(nickname) {
-        const userIndex = data.userList.indexOf(nickname)
+        let userIndex = null
+
+        data.userList.forEach((user, index) => {
+            if (user.nickname === nickname) {
+                userIndex = index
+            }
+        })
+
         data.userList.splice(userIndex, 1)
+    },
+    getUserNicknames() {
+        const result = []
+
+        data.userList.forEach((user) => {
+            if (user.nickname !== data.currentUser.nickname) {
+                result.push(user.nickname)
+            }
+        })
+
+        return result
+    },
+    getUserByNickname(nickname) {
+        let result = null
+
+        data.userList.forEach((user) => {
+            if (user.nickname === nickname) {
+                result = user
+            }
+        })
+
+        return result
     }
 }
 

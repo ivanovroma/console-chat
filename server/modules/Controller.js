@@ -9,22 +9,28 @@ class Controller {
     authUser(data) {
         const user = {
             nickname: data.nickname,
+            publicKey: data.publicKey,
             socketId: this.socket.id,
             socket: this.socket
         }
 
+        // Добавляем пользователя в хранилище
         store.addUser(user)
-        const userList = store.getUserListNicknames()
-    
+        // Получаем публичный список пользователй
+        const userList = store.getUserListForClient()
+
+        // Отправляем пользователю текущий список пользователей
         user.socket.emit('message', {
             command: 'init_chat',
             data: userList
         })
     
+        // Отправляем всем пользователям данные о новом пользователе
         this.socket.broadcast.emit('message', {
             command: 'new_user_add_to_chat',
             data: {
-                nickname: user.nickname
+                nickname: user.nickname,
+                publicKey: user.publicKey
             }
         })
     
@@ -32,6 +38,7 @@ class Controller {
     }
     sendMessagePublic(data) {
         const date = new Date()
+        // Отправляем всем пользователям публичное сообщение
         this.socket.broadcast.emit('message', {
             command: 'received_message_public',
             data: {
@@ -51,6 +58,7 @@ class Controller {
         const date = new Date()
         const socketTo = store.getSocketByNickname(nicknameTo)
 
+        // Отправляем приватное сообщение пользователю
         socketTo.emit('message', {
             command: 'received_message_private',
             data: {
@@ -69,6 +77,7 @@ class Controller {
 
         const { socket } = departedUser
 
+        // Отправляем всем сообщение о том что пользователь покинул чат
         socket.broadcast.emit('message', {
             command: 'user_left_chat',
             data: {

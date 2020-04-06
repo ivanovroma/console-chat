@@ -10,12 +10,15 @@ io.sockets.on('connection', (socket) => {
         const { command, data } = payload
 
         switch (command) {
+            // Авторизовался пользователь
             case 'auth_user':
                 controller.authUser(data)
                 break;
+            // Отправлено публичное сообщение
             case 'send_message_public':
                 controller.sendMessagePublic(data)
                 break
+            // Отправлено приватное сообщение
             case 'send_message_private':
                 controller.sendMessagePrivate(data)
                 break

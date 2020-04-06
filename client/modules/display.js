@@ -26,9 +26,9 @@ const display = {
 
         this.rl.resume()
     },
-    addUserInChat(nickname) {
+    addUserInChat(user) {
         this.rl.pause()
-        console.log(`\nПодключился пользователь: ${nickname}\n`)
+        console.log(`\nПодключился пользователь: ${user.nickname}\n`)
         this.rl.resume()
     },
     inputUserName(callback) {

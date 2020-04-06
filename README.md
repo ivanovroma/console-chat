@@ -1,4 +1,4 @@
-# CONSOLE-CHAT
+# ᛞ CONSOLE-CHAT ᛞ
 Разрабатывалось на node v12.16.1
 
 ## Как запустить

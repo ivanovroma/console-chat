@@ -32,7 +32,7 @@ const display = {
         this.rl.resume()
     },
     inputUserName(callback) {
-        this.lastQuestion = '\nВведите nickname пользователя которому хотите отправить сообщение:\n'
+        this.lastQuestion = '\nВведите nickname пользователя (или оставьте пустым):\n'
         this.needRepeatQuestion = true
         this.rl.question(this.lastQuestion, callback)
     },

@@ -26,7 +26,6 @@ io.sockets.on('connection', (socket) => {
     })
 
     socket.on('disconnect', (data) => {
-        console.log('LEAVe')
         controller.userLeftChat(data)
     })
 })

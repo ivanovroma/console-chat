@@ -65,6 +65,8 @@ class Controller {
 
         if (!departedUser) return
 
+        console.log(`Пользователь ${departedUser.nickname} покинул комнату`)
+
         const { socket } = departedUser
 
         socket.broadcast.emit('message', {
